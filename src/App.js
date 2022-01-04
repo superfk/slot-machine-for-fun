@@ -26,7 +26,6 @@ function App() {
     if (lastJsonMessage !== null) {
       switch (lastJsonMessage.cmd) {
         case 'reply_persons':
-          console.log('update persons', lastJsonMessage.data)
           const updatePersons = lastJsonMessage.data.map((elm, idx) => { return { ...elm, id: idx } })
           setpersons(updatePersons)
           const remainPersons = updatePersons.filter(elm => elm.winned !== '');
@@ -50,7 +49,7 @@ function App() {
       [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
     }[readyState];
     if (connectionStatus === 'Open') {
-      handleClickSendMessage('getMessage', 'Hi')
+      handleClickSendMessage('init_persons', 'Hi')
     }
   }, [conn, handleClickSendMessage, readyState])
 
@@ -132,6 +131,7 @@ function App() {
             setwinners([...winners, curPerson])
             setspinning(false)
             handleClickSendMessage('update_persons', prev)
+            console.log([...winners, curPerson])
             return prev
           })
         }

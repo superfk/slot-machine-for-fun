@@ -61,12 +61,11 @@ class PyServerAPI(object):
                 msg = json.loads(message)
                 cmd = msg["cmd"]
                 data = msg["data"]
-                if cmd == 'getMessage':
-                    print(self.persons)
+                if cmd == 'init_persons':
+                    self.persons = self.read_persons()
                     await self.sendMsg(websocket, 'reply_persons', self.persons)
                 elif cmd == 'update_persons':
                     self.update_persons(data)
-                    await self.sendMsg(websocket, 'reply_persons', self.persons)
                 
             except websockets.ConnectionClosedError as e:
                 self.unregister(websocket)
