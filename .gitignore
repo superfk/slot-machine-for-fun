@@ -180,6 +180,7 @@ db.sqlite3
 instance/
 .webassets-cache
 
+
 # Scrapy stuff:
 .scrapy
 
