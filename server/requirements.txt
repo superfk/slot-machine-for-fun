@@ -1,0 +1,4 @@
+websockets==10.0
+websocket_client
+pandas
+PyInstaller
